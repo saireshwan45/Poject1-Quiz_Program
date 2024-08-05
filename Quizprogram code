@@ -1,0 +1,82 @@
+import random
+questions = [
+            {
+                "question": "Who is the Prime minister of India?",
+                "options": ["A) Abdul Kalam", "B) Narendra modi", "C) Nirmala Sitaraman", "D) Yogi Adityanath"],
+                "answer": "B"
+            },
+            {
+                "question": "What is the largest planet in our Solar System?",
+                "options": ["A) Earth", "B) Jupiter", "C) Mars", "D) Saturn"],
+                "answer": "B"
+            },
+            {
+                "question": "What is the capital of India?",
+                "options": ["A) Hyderabad", "B) New Delhi", "C) Mumbai", "D) Karnataka"],
+                "answer": "B"
+            },
+            {
+                "question": "What is the full form of RBI?",
+                "options": ["A) Reserve Bank of India", "B) Reserve Bank of Indonesia", "C) Reserve Bank of Iran",
+                            "D) Reserve Bank of Iraq"],
+                "answer": "A"
+            },
+            {
+                "question": "Who wrote 'Romeo and Juliet'?",
+                "options": ["A) Charles Dickens", "B) Mark Twain", "C) William Shakespeare", "D) Jane Austen"],
+                "answer": "C"
+            },
+            {
+                "question": "Which is the longest river in India?",
+                "options": ["A) Yamuna", "B) Brahmaputra", "C) Ganga", "D) Indus"],
+                "answer": "C"
+            },
+            {
+                "question": "In which year did Rabindranth Tagore win Nobel Prize?",
+                "options": ["A) 1910", "B) 1913", "C) 1914", "D) 1916"],
+                "answer": "B"
+            },
+            {
+                "question": "Which planet is known as the Red Planet?",
+                "options": ["A) Venus", "B) Mars", "C) Mercury", "D) Jupiter"],
+                "answer": "B"
+            }
+        ]
+
+
+def ask_question(question_data):
+    print(question_data["question"])
+    for option in question_data["options"]:
+        print(option)
+    user_answer = input("Your answer (A, B, C, or D): ").strip().upper()
+    return user_answer == question_data["answer"]
+
+
+def run_quiz():
+    print("Welcome to the Quiz Game!")
+    score = 0
+    random.shuffle(questions)
+
+    for question in questions:
+        if ask_question(question):
+            print("Correct!\n")
+            score += 1
+        else:
+            print(f"Wrong Answer! The correct answer is {question['answer']}.\n")
+        print(f"Thank You ! Your final score is {score} out of {len(questions)}.")
+    return score
+
+
+total_score = 0
+while True:
+    score = run_quiz()
+    total_score += score
+
+    print(f"current score : {score} out of {len(questions)}.")
+    print(f"Total score till now: {total_score}\n")
+
+    play_again = input("Do you want to try again? (yes/no): ").strip().lower()
+    if play_again != 'yes':
+        break
+
+print(f"Thanks for playing! Your final score is {total_score} out of {len(questions) * (total_score // len(questions) + 1)}.")
